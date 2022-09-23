@@ -2,10 +2,9 @@ package io.github.hse.android
 
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import io.github.hse.android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,8 +14,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getIntentMessage()
         initNavigateButton()
+    }
+
+    override fun onResume() {
+        getIntentMessage()
+        super.onResume()
     }
 
     private fun getIntentMessage() {
