@@ -11,12 +11,19 @@ interface PlayListDao {
     @Update
     suspend fun updateSong(song: Song)
 
-    @Query ("DELETE FROM songs where id = :songId")
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAlbum(album: Album)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertArtist(artist: Artist)
+
+    @Query("DELETE FROM SONG where song_artist_id = :songId")
     suspend fun deleteSong(songId: Long)
 
-    @Query("SELECT * FROM songs where id == :songId")
+    @Query("SELECT * FROM SONG where song_artist_id == :songId")
     fun getSong(songId: Long): Flow<Song>
 
-    @Query("SELECT * FROM songs")
+    @Query("Select * From song JOIN artist ON song.song_artist_id = Artist.artist_id JOIN album on song_artist_id = Album.album_artist_id ")
     fun getSongs(): Flow<List<Song>>
+
 }

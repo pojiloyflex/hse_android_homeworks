@@ -24,17 +24,17 @@ class SongsAdapter(
             val song = listOfSongs[position]
             with(song) {
                 binding.songNameTextview.text = holder.itemView.context.getString(R.string.song_name, name)
-                binding.albumTextview.text = holder.itemView.context.getString(R.string.album, album)
-                binding.artistNameTextview.text = holder.itemView.context.getString(R.string.song_artist, artist)
+                binding.albumTextview.text = holder.itemView.context.getString(R.string.album, album.albumName)
+                binding.artistNameTextview.text = holder.itemView.context.getString(R.string.song_artist, artist.artistName)
 
                 binding.deleteSongButton.setOnClickListener {
                     listOfSongs.removeAt(position)
                     notifyItemChanged(position)
-                    deleteSong(song.id)
+                    deleteSong(song.artistId)
                 }
 
                 binding.playlistItem.setOnClickListener{
-                    editSong(song.id)
+                    editSong(song.artistId)
                 }
             }
         }
