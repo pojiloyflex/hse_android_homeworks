@@ -6,7 +6,7 @@ import io.github.hse.albumwatcher.data.model.PhotoResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ApiService {
+interface VkApiService {
 
     @GET("photos.getAlbums")
     suspend fun getAlbums(

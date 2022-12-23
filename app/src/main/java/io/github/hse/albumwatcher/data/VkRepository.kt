@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class VkRepository(
-    private val apiService: ApiService
+    private val apiService: VkApiService
 ) {
     suspend fun getPhotos(ownerId: String, albumId: String): Flow<DataState<Photos>> = flow {
         emit(DataState.Loading)
