@@ -1,17 +1,15 @@
 package io.github.hse.albumwatcher.ui.photo
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import io.github.hse.albumwatcher.R
-import io.github.hse.albumwatcher.data.model.Photos
 import io.github.hse.albumwatcher.databinding.FragmentPhotoBinding
 import io.github.hse.albumwatcher.ext.lazyStringArgument
-import io.github.hse.albumwatcher.utils.DataState
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -30,34 +28,18 @@ class PhotoFragment : Fragment(R.layout.fragment_photo) {
         observePhotos()
     }
 
-    private fun initViews(){
+    private fun initViews() {
         viewBinding.recyclerViewPhotos.adapter = adapter
         viewBinding.recyclerViewPhotos.layoutManager = GridLayoutManager(context, 2)
     }
 
-    private fun getPhotos(){
-        viewModel.getPhotos(ownerId,albumId)
+    private fun getPhotos() {
+        viewModel.getPhotos(ownerId, albumId)
     }
 
     private fun observePhotos() {
         viewModel.photos.onEach {
-            when(it){
-                is DataState.Success<Photos> -> {
-                    adapter.setPhotos(it.data.items)
-                    viewBinding.photoLoader.visibility = View.INVISIBLE
-                    viewBinding.photoErrorText.visibility = View.INVISIBLE
-                }
-                is DataState.Error -> {
-                    viewBinding.photoErrorText.visibility = View.VISIBLE
-                    viewBinding.photoLoader.visibility = View.INVISIBLE
-                }
-                is DataState.Loading -> {
-                    viewBinding.photoLoader.visibility = View.VISIBLE
-                    viewBinding.photoLoader.setProgress(0, true)
-                    viewBinding.photoLoader.max = 100
-                }
-                null -> {}
-            }
+            adapter.setPhotos(it?.items ?: listOf())
         }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 

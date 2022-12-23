@@ -1,6 +1,5 @@
 package io.github.hse.albumwatcher.data
 
-import io.github.hse.albumwatcher.BuildConfig
 import io.github.hse.albumwatcher.data.model.AlbumResponse
 import io.github.hse.albumwatcher.data.model.PhotoResponse
 import retrofit2.http.GET
@@ -24,7 +23,7 @@ interface VkApiService {
     ): PhotoResponse
 
     private companion object {
-        const val ACCESS_TOKEN = BuildConfig.API_KEY
+        const val ACCESS_TOKEN = "082ae447082ae447082ae447cf085630020082a082ae4476abe2a55c8d5ff8de9954c04"
         const val VERSION = "5.131"
     }
 }
