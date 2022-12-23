@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import io.github.hse.albumwatcher.MainActivity
+import io.github.hse.albumwatcher.ui.MainActivity
 import io.github.hse.albumwatcher.R
 import io.github.hse.albumwatcher.data.model.Albums
 import io.github.hse.albumwatcher.databinding.FragmentAlbumBinding
