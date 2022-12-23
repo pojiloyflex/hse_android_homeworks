@@ -47,6 +47,7 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                     adapter.setAlbums(it.data.items)
                     viewBinding.loader.visibility = View.INVISIBLE
                     viewBinding.recyclerViewAlbums.visibility = View.VISIBLE
+                    viewBinding.errorText.visibility = View.INVISIBLE
                 }
                 is DataState.Error -> {
                     viewBinding.errorText.visibility = View.VISIBLE
@@ -55,6 +56,8 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                 }
                 is DataState.Loading -> {
                     viewBinding.loader.visibility = View.VISIBLE
+                    viewBinding.recyclerViewAlbums.visibility = View.INVISIBLE
+                    viewBinding.errorText.visibility = View.INVISIBLE
                     viewBinding.loader.setProgress(0, true)
                     viewBinding.loader.max = 100
                 }
